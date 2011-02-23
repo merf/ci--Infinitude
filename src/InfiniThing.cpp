@@ -11,7 +11,9 @@ InfiniThing::InfiniThing()
 	for(int i=0; i<10; ++i)
 	{
 		float f = i / 10.0f;
-		m_Things.push_back(boost::shared_ptr<MiniInfiniThingBase> (new MiniInfiniThingBase(i, 0.1f, Color(CM_HSV, f, 1.0f, 1.0f), Vec3f(0, (f-0.5f) * 300.0f, 0))));
+		Color c(CM_HSV, f, 1.0f, 1.0f);
+		MiniInfiniThingBase* p_thing = new MiniInfiniThingBase(i, 0.1f, c, Vec3f(0, (f-0.5f) * 300.0f, 0));
+		m_Things.push_back(boost::shared_ptr<MiniInfiniThingBase> (p_thing));
 	}
 }
 

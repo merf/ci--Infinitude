@@ -9,7 +9,7 @@
 class MiniInfiniThingBase
 {
 public:
-	MiniInfiniThingBase(int id, float time, ci::Color color, ci::Vec3f& pos)
+	MiniInfiniThingBase(int id, float time, const ci::Color& color, const ci::Vec3f& pos)
 		:
 		m_ID(id),
 		m_TotalTime(time),
@@ -50,6 +50,6 @@ public:
 	void	Trigger(int id);
 
 private:
-	typedef std::list<boost::shared_ptr<MiniInfiniThingBase>> TThingList;
+	typedef std::list<boost::shared_ptr<MiniInfiniThingBase> > TThingList;
 	TThingList m_Things;
 };
