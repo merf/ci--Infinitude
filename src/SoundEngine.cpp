@@ -7,6 +7,7 @@
 using namespace cinder;
 
 float sampling_freq = 44100.0f;
+//float sampling_freq = 22500.0f;
 ENormalizationStrategy g_NormalizationStrategy = SMOOTH_LIMIT_BARK_BANDS;
 
 static int static_short_history_size = 3;
@@ -28,9 +29,12 @@ void CSoundEngine::Init()
 
 	// Set init flag
 	mFftInit = false;
+}
 
-
-	m_NumFFTBands = NUM_FFT_BANDS;
+//*************************************************************************
+void CSoundEngine::InitBarkVals()
+{
+	m_NumFFTBands = mFft.getBinSize();
 
 	//bins are 0-nyquist - ie 0Hz - 22,500Hz
 	//we want to clump according bark scale - freq bands are:
@@ -122,6 +126,8 @@ void CSoundEngine::Update()
 				{
 					mFftInit = true;
 					mFft.setDataSize(mSampleCount);
+
+					InitBarkVals();
 				}
 
 				// Analyze data
@@ -143,6 +149,8 @@ void CSoundEngine::Update()
 //*************************************************************************
 void CSoundEngine::Draw()
 {
+	gl::enableAlphaBlending();
+
 	// Check init flag
 	if (mFftInit)
 	{
@@ -151,25 +159,35 @@ void CSoundEngine::Draw()
 
 		float curr_x = 0;
 		float bar_width = w / (float)NUM_BARK_SCALE_BANDS;
+		float bar_height = h * 0.25f;
 
 		for(int i=0; i<NUM_BARK_SCALE_BANDS; ++i)
 		{
 			float f = i/(float)NUM_BARK_SCALE_BANDS;
+
+			glColor4f(ColorA(CM_RGB, 0.5f, 0.5f, 0.5f, 0.5f));
+			gl::drawSolidRect(Rectf(curr_x, h-bar_height, curr_x+bar_width, h));
+
 			glColor3f(Color(CM_HSV, f, 1, 1));
-
 			float val = GetMovement(f);
-			gl::drawSolidRect(Rectf(curr_x, h-val*h, curr_x+bar_width, h));
+			gl::drawSolidRect(Rectf(curr_x, h-val*bar_height, curr_x+bar_width*0.5f, h));
+			curr_x += bar_width * 0.5f;
 
-			curr_x += bar_width;
+			glColor3f(Color(CM_HSV, f, 1, 0.75f));
+			val = GetShortAverage(f);
+			gl::drawSolidRect(Rectf(curr_x, h-val*bar_height, curr_x+bar_width*0.25f, h));
+			curr_x += bar_width * 0.25f;
+
+			glColor3f(Color(CM_HSV, f, 1, 0.5f));
+			val = GetAverage(f);
+			gl::drawSolidRect(Rectf(curr_x, h-val*bar_height, curr_x+bar_width*0.25f, h));
+			curr_x += bar_width * 0.25f;
 		}
 
 		//// Get data
 		//float * mFreqData = mFft.getAmplitude();
 		//float * mTimeData = mFft.getData();
 		//int32_t mDataSize = mFft.getBinSize();
-
-		//float w = mp_App->getWindowWidth();
-		//float h = mp_App->getWindowHeight();
 
 		//// Get dimensions
 		//float mScale = ((float)w - 20.0f) / (float)mDataSize;
@@ -216,7 +234,7 @@ void CSoundEngine::ProcessAudio(float time_step)
 	avg_vol /= m_NumFFTBands;
 
 	static float min_allowed = 0.01f;
-	math<float>::max(min_allowed, avg_vol);
+	avg_vol = math<float>::max(min_allowed, avg_vol);
 
 	m_SmoothVolume = lerp(m_SmoothVolume, avg_vol, 0.1f);
 	m_SmoothVolume = lerp(m_SmoothVolume, max_vol, 0.1f);
@@ -226,8 +244,9 @@ void CSoundEngine::ProcessAudio(float time_step)
 	//chunk up the FFT into the bark scale bins...
 	for(int i = 0; i < m_NumFFTBands; i++)
 	{
+		float f = log((float)(i+2));
 		int bark = binToBark[i];
-		m_BarkScaleValues[bark] += mp_FFTOutput[i];
+		m_BarkScaleValues[bark] += mp_FFTOutput[i] * f;
 	}
 	
 	NormalizeAudio();
@@ -341,7 +360,7 @@ void CSoundEngine::NormalizeAudio()
 				for(int i=0; i<NUM_BARK_SCALE_BANDS; ++i)
 				{
 					m_BarkScaleValues[i] *= normalization_mul;
-					math<float>::min(m_BarkScaleValues[i], 1.0f);
+					m_BarkScaleValues[i] = math<float>::min(m_BarkScaleValues[i], 1.0f);
 				}
 			}
 		}
@@ -404,7 +423,7 @@ float CSoundEngine::GetMovement(float f)
 		
 		float diff_sq = pow(diff, 2);
 		float variance = GetVariance(f);
-		math<float>::max(variance, 0.0000000001f);
+		variance = math<float>::max(variance, 0.0000000001f);
 		float movement_mag = diff_sq / variance;
 
 		static float one_on_num_standard_dev_that_counts_as_max = 1.0f / 3.0f;
@@ -415,7 +434,7 @@ float CSoundEngine::GetMovement(float f)
 			movement_mag *= -1.0f;
 		}
 
-		math<float>::clamp(movement_mag, -1.0f, 1.0f);
+		movement_mag = math<float>::clamp(movement_mag, -1.0f, 1.0f);
 		return movement_mag;
 	}
 	else
@@ -429,7 +448,7 @@ float CSoundEngine::GetMovement(float f)
 
 		float val = diff/(amount_for_max * long_average);
 
-		math<float>::clamp(val, -1.0f, 1.0f);
+		val = math<float>::clamp(val, -1.0f, 1.0f);
 
 		return val;
 	}

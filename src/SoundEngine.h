@@ -26,11 +26,12 @@ public:
 		Init(); 
 	}
 
-	void	Init();
-	void	Update();
-	void	ProcessAudio(float time_step);
-	void	NormalizeAudio();
-	void	Draw();
+	void		Init();
+	void		InitBarkVals();
+	void		Update();
+	void		ProcessAudio(float time_step);
+	void		NormalizeAudio();
+	void		Draw();
 
 	float		GetAmplitude(float f);
 	float		GetAverage(float f);
@@ -55,14 +56,14 @@ private:
 
 	float* mp_FFTOutput;
 
-	float m_BarkScaleValues[NUM_BARK_SCALE_BANDS];
-	float m_BarkShortAverages[NUM_BARK_SCALE_BANDS];
-	float m_BarkLongAverages[NUM_BARK_SCALE_BANDS];
-	float m_BarkVariance[NUM_BARK_SCALE_BANDS];
-	float m_BarkBandFrequencies[NUM_BARK_SCALE_BANDS];
-	float m_BarkBandMultipliers[NUM_BARK_SCALE_BANDS];
+	float 				m_BarkScaleValues[NUM_BARK_SCALE_BANDS];
+	float 				m_BarkShortAverages[NUM_BARK_SCALE_BANDS];
+	float 				m_BarkLongAverages[NUM_BARK_SCALE_BANDS];
+	float 				m_BarkVariance[NUM_BARK_SCALE_BANDS];
+	float 				m_BarkBandFrequencies[NUM_BARK_SCALE_BANDS];
+	float 				m_BarkBandMultipliers[NUM_BARK_SCALE_BANDS];
 
-	std::list<float>		m_History[NUM_BARK_SCALE_BANDS];
+	std::list<float>	m_History[NUM_BARK_SCALE_BANDS];
 
 	int* binToBark;
 

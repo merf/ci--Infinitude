@@ -14,6 +14,7 @@ public:
 		m_ID(id),
 		m_TotalTime(time),
 		m_CurrTime(0),
+		m_TriggerCooloff(0),
 		m_Strength(0),
 		m_Colour(color),
 		m_Pos(pos)
@@ -23,7 +24,7 @@ public:
 	void	Draw();
 
 	virtual void	DrawImpl();
-	virtual void	Trigger() { m_CurrTime = 0; };
+	virtual void	Trigger();
 
 	int		GetID() { return m_ID; }
 
@@ -31,6 +32,7 @@ private:
 	int		m_ID;
 	float	m_TotalTime;
 	float	m_CurrTime;
+	float	m_TriggerCooloff;
 	float	m_Strength;
 
 	ci::Color m_Colour;

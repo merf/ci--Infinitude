@@ -11,7 +11,7 @@ InfiniThing::InfiniThing()
 	for(int i=0; i<10; ++i)
 	{
 		float f = i / 10.0f;
-		m_Things.push_back(boost::shared_ptr<MiniInfiniThingBase> (new MiniInfiniThingBase(i, 3.0f, Color(CM_HSV, f, 1.0f, 1.0f), Vec3f(0, (f-0.5f) * 300.0f, 0))));
+		m_Things.push_back(boost::shared_ptr<MiniInfiniThingBase> (new MiniInfiniThingBase(i, 0.1f, Color(CM_HSV, f, 1.0f, 1.0f), Vec3f(0, (f-0.5f) * 300.0f, 0))));
 	}
 }
 
@@ -64,20 +64,27 @@ void MiniInfiniThingBase::Update(float time)
 	{
 		m_Strength = 0;
 	}
+	else if(f > 1.0f)
+	{
+		m_Strength = 2.0f - f;
+	}
 	else
 	{
-		m_Strength = 1-f;
+		m_Strength = f;
 	}
-	//else if(f > 1.0f)
-	//{
-	//	m_Strength = 2.0f - f;
-	//}
-	//else
-	//{
-	//	m_Strength = f;
-	//}
 
 	m_CurrTime += time;
+	m_TriggerCooloff -= time;
+}
+
+//*************************************************************************
+void MiniInfiniThingBase::Trigger()
+{
+	if(m_TriggerCooloff <= 0.0f)
+	{
+		m_TriggerCooloff = m_TotalTime * 0.5f;
+		m_CurrTime = 0; 
+	}
 }
 
 //*************************************************************************
@@ -85,6 +92,6 @@ void MiniInfiniThingBase::DrawImpl()
 {
 	Vec2f offset(100, 0);
 	glColor3f(m_Colour);
-	gl::drawSolidCircle(offset * m_Strength, 1 + m_Strength * 10);
-	gl::drawSolidCircle(offset * -m_Strength, 1 + m_Strength * 10);
+	gl::drawSolidCircle(offset * m_Strength, 1 * 10);
+	gl::drawSolidCircle(offset * -m_Strength, 1 * 10);
 }

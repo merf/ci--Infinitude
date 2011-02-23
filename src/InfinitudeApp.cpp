@@ -59,6 +59,9 @@ void InfinitudeAppApp::keyDown(KeyEvent event)
 	case KeyEvent::KEY_9:
 		mp_InfiniThing->Trigger(9);
 		break;
+	case KeyEvent::KEY_ESCAPE:
+		quit();
+		break;
 	}
 }
 
@@ -70,7 +73,7 @@ void InfinitudeAppApp::update()
 	{
 		float f = i/10.0f;
 
-		if(mp_SoundEngine->GetMovement(f) > 0.5f)
+		if(mp_SoundEngine->GetMovement(f) > 0.1f)
 		{
 			mp_InfiniThing->Trigger(i);
 		}
@@ -112,7 +115,7 @@ void InfinitudeAppApp::draw()
 	//gl::translate(Vec3f(w, h, 0));
 	gl::popMatrices();
 
-	//mp_SoundEngine->Draw();
+	mp_SoundEngine->Draw();
 }
 
 CINDER_APP_BASIC( InfinitudeAppApp, RendererGl )
