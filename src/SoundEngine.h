@@ -26,6 +26,9 @@ public:
 		Init(); 
 	}
 
+	~CSoundEngine() { Shutdown(); }
+
+
 	void		Init();
 	void		InitBarkVals();
 	void		Update();
@@ -38,7 +41,18 @@ public:
 	float		GetShortAverage(float f);
 	float		GetMovement(float f);
 
+	float		GetSmoothVolume() const { return m_SmoothVolume; }
+
+	float*		GetRawAudio(int& num);
+
+	static CSoundEngine& Get() { return *mp_Impl; }
+	static void Create(ci::app::AppBasic* p_parent) { mp_Impl = new CSoundEngine(p_parent); }
+	static void Destroy() { if(mp_Impl != NULL) { mp_Impl->Shutdown(); delete mp_Impl; mp_Impl = NULL; } }
+	static bool IsValid() { return mp_Impl != NULL; }
+
 private:
+	void		Shutdown();
+
 	float		GetVariance(float f);
 	float		GetValue(float* vals, float f);
 
@@ -72,4 +86,6 @@ private:
 
 	float m_SmoothVolume;
 	float m_SmoothBarkBandMax;
+
+	static CSoundEngine* mp_Impl;
 };

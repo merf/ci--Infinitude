@@ -10,19 +10,21 @@ using namespace std;
 
 class InfinitudeAppApp : public AppBasic {
   public:
+	  ~InfinitudeAppApp() {quit();}
 	void setup();
+	void quit();
 	void keyDown(KeyEvent event);	
 	void update();
 	void draw();
 
 	InfiniThing* mp_InfiniThing;
-	CSoundEngine* mp_SoundEngine;
 };
 
 void InfinitudeAppApp::setup()
 {
 	mp_InfiniThing = new InfiniThing();
-	mp_SoundEngine = new CSoundEngine(this);
+
+	CSoundEngine::Create(this);
 }
 
 void InfinitudeAppApp::keyDown(KeyEvent event)
@@ -67,20 +69,14 @@ void InfinitudeAppApp::keyDown(KeyEvent event)
 
 void InfinitudeAppApp::update()
 {
-	mp_SoundEngine->Update();
-
-	for(int i=0; i<10; ++i)
+	if(CSoundEngine::IsValid())
 	{
-		float f = i/10.0f;
+		CSoundEngine::Get().Update();
+		mp_InfiniThing->CheckTriggers();
 
-		if(mp_SoundEngine->GetMovement(f) > 0.1f)
-		{
-			mp_InfiniThing->Trigger(i);
-		}
+		static float delta_time = 1.0f / 60.0f;
+		mp_InfiniThing->Update(delta_time);
 	}
-
-	static float delta_time = 1.0f / 60.0f;
-	mp_InfiniThing->Update(delta_time);
 }
 
 void InfinitudeAppApp::draw()
@@ -94,8 +90,10 @@ void InfinitudeAppApp::draw()
 	gl::pushMatrices();
 
 	gl::translate(Vec3f(w, h, 0));
+
+	//gl::rotate((float)getElapsedSeconds()*180.0f);
+
 	/*
-	gl::rotate((float)getElapsedSeconds()*180.0f);
 
 	glColor3f(1, 0, 0);
 	gl::drawSolidRect(ci::Rectf(0, 0, w, h));
@@ -106,16 +104,22 @@ void InfinitudeAppApp::draw()
 	glColor3f(1, 1, 1);
 	gl::drawSolidRect(ci::Rectf(0, -h, w, 0));
 
-	glColor3f(0,0,0);
-	gl::drawSolidCircle(ci::Vec2f(0,0), w*0.25f);
 	*/
 
 	mp_InfiniThing->Draw();
 
+
 	//gl::translate(Vec3f(w, h, 0));
 	gl::popMatrices();
 
-	mp_SoundEngine->Draw();
+	//mp_SoundEngine->Draw();
+}
+
+void InfinitudeAppApp::quit()
+{
+	CSoundEngine::Destroy();
+
+	__super::quit();
 }
 
 CINDER_APP_BASIC( InfinitudeAppApp, RendererGl )

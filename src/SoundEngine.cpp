@@ -16,6 +16,8 @@ static int static_long_history_size = 50;
 static int short_history_size = 3;
 static int long_history_size = 50;
 
+CSoundEngine* CSoundEngine::mp_Impl = NULL;
+
 //*************************************************************************
 //*************************************************************************
 void CSoundEngine::Init()
@@ -29,6 +31,14 @@ void CSoundEngine::Init()
 
 	// Set init flag
 	mFftInit = false;
+}
+
+//*************************************************************************
+void CSoundEngine::Shutdown()
+{
+	// Stop track
+	mTrack->enablePcmBuffering(false);
+	mTrack->stop();
 }
 
 //*************************************************************************
@@ -217,6 +227,13 @@ void CSoundEngine::Draw()
 	}
 }
 
+
+//*******************************************************************************************************
+float* CSoundEngine::GetRawAudio(int& num)
+{
+	num = mFft.getDataSize();
+	return mFft.getData();
+}
 
 //*******************************************************************************************************
 void CSoundEngine::ProcessAudio(float time_step)
