@@ -10,9 +10,6 @@ float sampling_freq = 44100.0f;
 //float sampling_freq = 22500.0f;
 ENormalizationStrategy g_NormalizationStrategy = SMOOTH_LIMIT_BARK_BANDS;
 
-static int static_short_history_size = 3;
-static int static_long_history_size = 50;
-
 static int short_history_size = 3;
 static int long_history_size = 50;
 
