@@ -1,4 +1,4 @@
-#include "cinder/app/AppBasic.h"
+#include "InfinitudeApp.h"
 #include "cinder/gl/gl.h"
 
 #include "InfiniThing.h"
@@ -8,20 +8,12 @@ using namespace ci;
 using namespace ci::app;
 using namespace std;
 
-class InfinitudeAppApp : public AppBasic {
-  public:
-	  ~InfinitudeAppApp() {quit();}
-	void setup();
-	void quit();
-	void keyDown(KeyEvent event);	
-	void update();
-	void draw();
-
-	InfiniThing* mp_InfiniThing;
-};
+InfinitudeAppApp* InfinitudeAppApp::mp_App = NULL;
 
 void InfinitudeAppApp::setup()
 {
+	mp_App = this;
+	
 	mp_InfiniThing = new InfiniThing();
 
 	CSoundEngine::Create(this);
@@ -63,6 +55,10 @@ void InfinitudeAppApp::keyDown(KeyEvent event)
 		break;
 	case KeyEvent::KEY_ESCAPE:
 		quit();
+		break;
+	case KeyEvent::KEY_f:
+		setFullScreen(!isFullScreen());
+			
 		break;
 	}
 }
@@ -119,7 +115,7 @@ void InfinitudeAppApp::quit()
 {
 	CSoundEngine::Destroy();
 
-	__super::quit();
+	AppBasic::quit();
 }
 
 CINDER_APP_BASIC( InfinitudeAppApp, RendererGl )

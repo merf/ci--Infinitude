@@ -1,5 +1,6 @@
 #include "InfiniThing.h"
 #include "SoundEngine.h"
+#include "InfinitudeApp.h"
 
 #include "cinder/gl/gl.h"
 
@@ -141,20 +142,23 @@ void MiniInfiniThingScope::DrawImpl()
 {
 	if(m_Strength > 0.5f)
 	{
-		float width = 200;
-		float height = 100 * m_Strength;
+		float width = InfinitudeAppApp::mp_App->getWindowWidth() * 0.25f;
+		float height = InfinitudeAppApp::mp_App->getWindowHeight() * 0.125f * m_Strength;
 		glColor3f(m_Colour);
 
 		int num = 0;
 		float* data = CSoundEngine::Get().GetRawAudio(num);
 
 		PolyLine<Vec2f> ScopeLine;
+		
+		int inc = (m_Strength) * 256;
+		inc = math<int>::clamp(inc, 1, 256);
 
-		for(int i=0; i<num; ++i)
+		for(int i=0; i<num; i += inc)
 		{
 			float f = i/(float)num;
 			f -= 0.5f;
-			ScopeLine.push_back(Vec2f(f * width, (data[i]-0.5f)*height));
+			ScopeLine.push_back(Vec2f(f * width, (data[i])*height));
 		}
 		gl::draw(ScopeLine);
 	}
@@ -169,7 +173,7 @@ void MiniInfiniThingSolar::DrawImpl()
 
 	float angle_inc = 360.0f / (float)num;
 
-	float size = 200.0f;
+	float size = InfinitudeAppApp::mp_App->getWindowWidth() * 0.25f;
 
 	for(int i=0; i<num; ++i)
 	{
@@ -177,11 +181,11 @@ void MiniInfiniThingSolar::DrawImpl()
 
 		gl::rotate(angle_inc);
 		glColor3f(Color(CM_HSV, f, 1, 1));
-		float val = CSoundEngine::Get().GetMovement(f);
+		float val = CSoundEngine::Get().GetShortAverage(f) + 0.3f;
 		val = math<float>::max(val, 0.0f);
-		gl::drawSolidRect(Rectf(0, 0, 10, val * -size));
+		gl::drawSolidRect(Rectf(0, 0, size * 0.1f, val * -size));
 	}
 
 	glColor3f(0,0,0);
-	gl::drawSolidCircle(ci::Vec2f(0,0), size * 0.5f);
+	gl::drawSolidCircle(ci::Vec2f(0,0), InfinitudeAppApp::mp_App->getWindowWidth() * 0.125f);
 }

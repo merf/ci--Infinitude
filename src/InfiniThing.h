@@ -53,7 +53,7 @@ public:
 
 	void Init(int id, float time, const ci::Color& color, const ci::Vec3f& pos)
 	{
-		__super::Init(id, pos);
+		MiniInfiniThingAbstractBase::Init(id, pos);
 
 		m_TotalTime = time;
 		m_Colour = color;
@@ -89,7 +89,7 @@ public:
 
 	void			Init(int id, float time, const ci::Color& color, const ci::Vec3f& pos, float freq, float thresh)
 	{
-		__super::Init(id, time, color, pos);
+		MiniInfiniThingSimpleBase::Init(id, time, color, pos);
 		m_Freq = freq;
 		m_Threshold = thresh;
 	}

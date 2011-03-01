@@ -197,88 +197,7 @@
 	<key>Notifications</key>
 	<array/>
 	<key>OpenEditors</key>
-	<array>
-		<dict>
-			<key>Content</key>
-			<dict>
-				<key>PBXProjectModuleGUID</key>
-				<string>2825F5B91315BEB70081E125</string>
-				<key>PBXProjectModuleLabel</key>
-				<string>InfiniThing.cpp</string>
-				<key>PBXSplitModuleInNavigatorKey</key>
-				<dict>
-					<key>Split0</key>
-					<dict>
-						<key>PBXProjectModuleGUID</key>
-						<string>2825F5BA1315BEB70081E125</string>
-						<key>PBXProjectModuleLabel</key>
-						<string>InfiniThing.cpp</string>
-						<key>_historyCapacity</key>
-						<integer>0</integer>
-						<key>bookmark</key>
-						<string>2825F6221315C1990081E125</string>
-						<key>history</key>
-						<array>
-							<string>2825F5A21315BDCD0081E125</string>
-						</array>
-					</dict>
-					<key>SplitCount</key>
-					<string>1</string>
-				</dict>
-				<key>StatusBarVisibility</key>
-				<true/>
-			</dict>
-			<key>Geometry</key>
-			<dict>
-				<key>Frame</key>
-				<string>{{0, 20}, {1041, 1015}}</string>
-				<key>PBXModuleWindowStatusBarHidden2</key>
-				<false/>
-				<key>RubberWindowFrame</key>
-				<string>15 117 1041 1056 0 0 1920 1178 </string>
-			</dict>
-		</dict>
-		<dict>
-			<key>Content</key>
-			<dict>
-				<key>PBXProjectModuleGUID</key>
-				<string>2825F5941315BDA90081E125</string>
-				<key>PBXProjectModuleLabel</key>
-				<string>InfiniThing.h</string>
-				<key>PBXSplitModuleInNavigatorKey</key>
-				<dict>
-					<key>Split0</key>
-					<dict>
-						<key>PBXProjectModuleGUID</key>
-						<string>2825F5951315BDA90081E125</string>
-						<key>PBXProjectModuleLabel</key>
-						<string>InfiniThing.h</string>
-						<key>_historyCapacity</key>
-						<integer>0</integer>
-						<key>bookmark</key>
-						<string>2825F6231315C1990081E125</string>
-						<key>history</key>
-						<array>
-							<string>2825F5791315BD1D0081E125</string>
-						</array>
-					</dict>
-					<key>SplitCount</key>
-					<string>1</string>
-				</dict>
-				<key>StatusBarVisibility</key>
-				<true/>
-			</dict>
-			<key>Geometry</key>
-			<dict>
-				<key>Frame</key>
-				<string>{{0, 20}, {1041, 1015}}</string>
-				<key>PBXModuleWindowStatusBarHidden2</key>
-				<false/>
-				<key>RubberWindowFrame</key>
-				<string>15 117 1041 1056 0 0 1920 1178 </string>
-			</dict>
-		</dict>
-	</array>
+	<array/>
 	<key>PerspectiveWidths</key>
 	<array>
 		<integer>1920</integer>
@@ -356,7 +275,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>14</integer>
+									<integer>12</integer>
 									<integer>10</integer>
 									<integer>0</integer>
 								</array>
@@ -397,7 +316,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>2825F55F1315BC1E0081E125</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>SoundEngine.cpp</string>
+								<string>InfiniThing.cpp</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -405,16 +324,14 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>2825F5601315BC1E0081E125</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>SoundEngine.cpp</string>
+										<string>InfiniThing.cpp</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2825F6211315C1990081E125</string>
+										<string>28AB1BE4131DAAB900195B9B</string>
 										<key>history</key>
 										<array>
 											<string>2825F58C1315BDA90081E125</string>
-											<string>2825F5B01315BEB70081E125</string>
-											<string>2825F5DE1315BFE00081E125</string>
 											<string>2825F5DF1315BFE00081E125</string>
 											<string>2825F5E11315BFE00081E125</string>
 											<string>2825F5E21315BFE00081E125</string>
@@ -422,8 +339,14 @@
 											<string>2825F5E41315BFE00081E125</string>
 											<string>2825F5FF1315C0C20081E125</string>
 											<string>2825F6051315C0E80081E125</string>
-											<string>2825F61F1315C1990081E125</string>
-											<string>2825F6201315C1990081E125</string>
+											<string>28AB1B5A131DA61F00195B9B</string>
+											<string>28AB1B88131DA80A00195B9B</string>
+											<string>28AB1B8A131DA80A00195B9B</string>
+											<string>28AB1B8B131DA80A00195B9B</string>
+											<string>28AB1B95131DA84C00195B9B</string>
+											<string>28AB1B96131DA84C00195B9B</string>
+											<string>28AB1BCC131DA9BD00195B9B</string>
+											<string>28AB1BCD131DA9BD00195B9B</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -437,18 +360,18 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1713, 1016}}</string>
+								<string>{{0, 0}, {1713, 711}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 116 1920 1062 0 0 1920 1178 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>1016pt</string>
+							<string>711pt</string>
 						</dict>
 						<dict>
 							<key>Proportion</key>
-							<string>0pt</string>
+							<string>305pt</string>
 							<key>Tabs</key>
 							<array>
 								<dict>
@@ -462,7 +385,7 @@
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{10, 27}, {1713, 282}}</string>
+										<string>{{10, 27}, {1713, -27}}</string>
 									</dict>
 									<key>Module</key>
 									<string>XCDetailModule</string>
@@ -516,7 +439,7 @@
 									<key>GeometryConfiguration</key>
 									<dict>
 										<key>Frame</key>
-										<string>{{10, 27}, {1713, -27}}</string>
+										<string>{{10, 27}, {1713, 278}}</string>
 										<key>RubberWindowFrame</key>
 										<string>0 116 1920 1062 0 0 1920 1178 </string>
 									</dict>
@@ -546,11 +469,11 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>2825F5611315BC1E0081E125</string>
+				<string>28AB1B45131DA57900195B9B</string>
 				<string>1CA23ED40692098700951B8B</string>
-				<string>2825F5621315BC1E0081E125</string>
+				<string>28AB1B46131DA57900195B9B</string>
 				<string>2825F55F1315BC1E0081E125</string>
-				<string>2825F5631315BC1E0081E125</string>
+				<string>28AB1B47131DA57900195B9B</string>
 				<string>1CA23EDF0692099D00951B8B</string>
 				<string>1CA23EE00692099D00951B8B</string>
 				<string>1CA23EE10692099D00951B8B</string>
@@ -699,14 +622,14 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>2825F5B31315BEB70081E125</string>
+				<string>28AB1B48131DA57900195B9B</string>
 				<string>1CCC7628064C1048000F2A68</string>
 				<string>1CCC7629064C1048000F2A68</string>
-				<string>2825F5B41315BEB70081E125</string>
-				<string>2825F5B51315BEB70081E125</string>
-				<string>2825F5B61315BEB70081E125</string>
-				<string>2825F5B71315BEB70081E125</string>
-				<string>2825F5B81315BEB70081E125</string>
+				<string>28AB1B49131DA57900195B9B</string>
+				<string>28AB1B4A131DA57900195B9B</string>
+				<string>28AB1B4B131DA57900195B9B</string>
+				<string>28AB1B4C131DA57900195B9B</string>
+				<string>28AB1B4D131DA57900195B9B</string>
 			</array>
 			<key>ToolbarConfigUserDefaultsMinorVersion</key>
 			<string>2</string>
@@ -740,11 +663,8 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>2825F6241315C1990081E125</string>
-		<string>2825F5F11315BFEE0081E125</string>
-		<string>2825F5F21315BFEE0081E125</string>
-		<string>2825F5941315BDA90081E125</string>
-		<string>2825F5B91315BEB70081E125</string>
+		<string>28AB1B4F131DA57900195B9B</string>
+		<string>28AB1B50131DA57900195B9B</string>
 		<string>/Users/Neil/Documents/Dev/cinder git/apps/ci--Infinitude/xcode/Infinitude.xcodeproj</string>
 	</array>
 	<key>WindowString</key>

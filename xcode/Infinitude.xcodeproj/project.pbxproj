@@ -48,6 +48,7 @@
 		2825F5D01315BF4D0081E125 /* kiss_fftr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kiss_fftr.c; sourceTree = "<group>"; };
 		2825F5D11315BF4D0081E125 /* kiss_fftr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kiss_fftr.h; sourceTree = "<group>"; };
 		2825F5D71315BFA10081E125 /* Kiss.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Kiss.cpp; path = ../../../blocks/kiss/src/Kiss.cpp; sourceTree = SOURCE_ROOT; };
+		28AB1B70131DA6F300195B9B /* InfinitudeApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfinitudeApp.h; path = ../src/InfinitudeApp.h; sourceTree = SOURCE_ROOT; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* Infinitude_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Infinitude_Prefix.pch; sourceTree = "<group>"; };
@@ -88,6 +89,7 @@
 				2825F59A1315BDB90081E125 /* SoundEngine.cpp */,
 				2825F59B1315BDB90081E125 /* SoundEngine.h */,
 				00BAE6590E7ED9C10018A608 /* InfinitudeApp.cpp */,
+				28AB1B70131DA6F300195B9B /* InfinitudeApp.h */,
 			);
 			name = Source;
 			sourceTree = "<group>";
